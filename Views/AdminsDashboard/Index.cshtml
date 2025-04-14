@@ -1,0 +1,9 @@
+﻿@model RegisterLoginMVC.Admin
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Admin Dashboard</h2>
+
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("BookingReq", new {adminid=Model.adminId})'">Booking Requests from Users</button>

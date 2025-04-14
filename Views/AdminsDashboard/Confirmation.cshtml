@@ -1,0 +1,48 @@
+﻿@model RegisterLoginMVC.BookingList
+
+@{
+    ViewBag.Title = "Accept";
+}
+<fieldset style="color:white;">
+<h2>Accept</h2>
+
+@using (Html.BeginForm("Confirmation", "AdminsDashboard", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>BookingList</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.RideId)
+        <div>
+            <h3>Booking Details:</h3>
+            <p>Source: @Model.PickUp</p>
+            <p>Destination: @Model.Drop</p>
+            <p>Fare: @Model.Fare</p>
+        </div>
+
+        <div>
+            <label>Status:</label>
+            @Html.RadioButtonFor(model => model.Status, "accepted") Accepted
+            @Html.RadioButtonFor(model => model.Status, "rejected") Rejected
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+               
+                <input type="submit" value="Save" class="btn btn-primary"/>
+
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new {Model.AdminId})
+</div>
+</fieldset>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

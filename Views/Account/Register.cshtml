@@ -1,0 +1,53 @@
+﻿@model RegisterLoginMVC.Models.UserModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<fieldset style="color:white">
+    <legend>Registration Form</legend>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName)
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.UserName, null, new { @class = "text text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailId)
+                @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", required = "required", type = "email" })
+                @Html.ValidationMessageFor(model => model.EmailId, null, new { @class = "text text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password)
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPassword)
+                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { @class = "text text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MobileNum)
+                @Html.PasswordFor(model => model.MobileNum, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.MobileNum, null, new { @class = "text text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+                <input type="reset" value="Reset" class="btn btn-secondary" />
+            </div>
+
+        </div>
+    }
+</fieldset>
+
+

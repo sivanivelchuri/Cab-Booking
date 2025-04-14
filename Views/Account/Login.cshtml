@@ -1,0 +1,68 @@
+﻿@model RegisterLoginMVC.User
+@{
+    ViewBag.Title = "Login";
+}
+<body >
+    <fieldset>
+        <legend style="color:white">
+            Login Form
+        </legend>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td style="color:white">
+                        @Html.Label("EmailId")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.EmailId)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.EmailId, null, new { @class = "text text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color:white">
+                        @Html.Label("Password")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <button type="submit" class="btn btn-primary" value="Login" onclick="location.href='@Url.Action("Index", new {Model.UserId})'">Login</button>
+
+
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-secondary" })
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ValidationMessage("Error", null, new { @class = "text text-danger" })
+                    </td>
+                </tr>
+            </table>
+        }
+    </fieldset>
+</body>

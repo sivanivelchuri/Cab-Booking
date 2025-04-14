@@ -1,0 +1,13 @@
+﻿@model RegisterLoginMVC.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("MyBookingList", new {UserId=Model.UserId})'">MyBookings</button>
+
+
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("CarDetails")'">CarDetails</button>

@@ -1,0 +1,184 @@
+﻿@model RegisterLoginMVC.BookingList
+
+
+
+@{
+    ViewBag.Title = "BookNow";
+}
+<fieldset style="color:white">
+    <h2>BookNow</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AdminId, "AdminId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AdminId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AdminId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CarId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CarId, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.CarId } })
+                    @Html.ValidationMessageFor(model => model.CarId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CARName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CARName, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.CarName } })
+                    @Html.ValidationMessageFor(model => model.CARName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Seats, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Seats, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.Seats } })
+                    @Html.ValidationMessageFor(model => model.Seats, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PickUp, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.PickUp, GetPickUpList(), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PickUp, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="message" @*style="background-color:papayawhip; padding: 10px; border-radius: 4px; margin-bottom: 20px; text-align: center; color:Black; font-size:larger;"*@>
+                <p>  Service provided Locations: BANGALORE, CHENNAI, DELHI, HYDERABAD, PUNE</p>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Drop, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Drop, GetDropList(), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Drop, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.PickUp, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PickUp, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PickUp, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Drop, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Drop, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Drop, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PickUpDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PickUpDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PickUPTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PickUPTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PickUPTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Book" class="btn btn-primary" onclick="showAlert('Booked! Status: To Be Confirmed')" />
+
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+</fieldset>
+
+@functions {
+    // Helper methods to get the options for the dropdown lists
+    public List<SelectListItem> GetPickUpList()
+    {
+        return new List<SelectListItem>
+{
+ new SelectListItem { Text = "Hyderabad", Value = "Hyderabad" },
+ new SelectListItem { Text = "Bangalore", Value = "Bangalore" },
+ new SelectListItem { Text = "Pune", Value = "Pune" },
+ new SelectListItem { Text = "Chennai", Value = "Chennai" }
+            // Add more options as needed
+        };
+    }
+
+
+
+    public List<SelectListItem> GetDropList()
+    {
+        return new List<SelectListItem>
+{
+ new SelectListItem { Text = "Delhi", Value = "Delhi" },
+ new SelectListItem { Text = "Hyderabad", Value = "Hyderabad" },
+ new SelectListItem { Text = "Bangalore", Value = "Bangalore" },
+ new SelectListItem { Text = "Pune", Value = "Pune" },
+ new SelectListItem { Text = "Chennai", Value = "Chennai" }
+            // Add more options as needed
+        };
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    function showAlert(message) {
+        alert(message);
+    }
+</script>

@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<RegisterLoginMVC.CarModel>
+
+
+@{
+    ViewBag.Title = "CarDetails";
+}
+<fieldset style="color:white">
+    <h2>Car Details</h2>
+
+
+    <table class="table" style="color:white">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seats)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seats)
+                </td>
+                <td>
+
+                    <div>
+                        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("BookNow",new { item.CarId, item.CarName, item.Seats })'">Book Now</button>
+                    </div>
+                </td>
+            </tr>
+        }
+       
+
+    </table>
+</fieldset>
